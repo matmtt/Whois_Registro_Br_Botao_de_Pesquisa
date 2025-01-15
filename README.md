@@ -1,6 +1,6 @@
 # Whoisbr Botão Pesquisa
 
-Adiciona ao website registro.br o botão "Consultar Proprietário no Whois"
+Extensão do Chrome que adiciona ao website registro.br o botão "Consultar Proprietário no Whois"
 
 ![](readmeimg.jpg)
 
