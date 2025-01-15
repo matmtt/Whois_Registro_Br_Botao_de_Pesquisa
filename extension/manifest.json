@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Whois Registro Br - Botão de Pesquisa",
+  "version": "1.0",
+  "description": "Adiciona o botão de consulta do proprietario do registro nas pesquisas de domínios .com.br já registrados",
+  "permissions": ["tabs"],
+  "host_permissions": [
+    "https://registro.br/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://registro.br/busca-dominio*"],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "16": "icon-16.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  }
+}
