@@ -4,4 +4,4 @@ Extensão do Chrome que adiciona ao website registro.br o botão "Consultar Prop
 
 ![](readmeimg.jpg)
 
-Em breve na Chrome Web Store
+Em breve na Chrome Web Store.
