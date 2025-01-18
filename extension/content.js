@@ -29,19 +29,32 @@
 
     const addWhoisButton = (afterElement, domain) => {
       removeWhoisButton();
-      afterElement.insertAdjacentHTML(
-        "afterend",
-        `<div id="whois-button-container" style="display: flex; justify-content: center; margin-top: 10px;">
-          <a href="https://registro.br/tecnologia/ferramentas/whois?search=${encodeURIComponent(domain)}" 
-             target="_blank" style="padding: 10px 20px; background-color: #56a845; color: #fff; text-decoration: none;
-             border-radius: 5px; font-size: 20px; cursor: pointer;">
-            Consultar proprietário no Whois
-          </a>
-        </div>`
-      );
+      const container = document.createElement("div");
+      container.id = "whois-button-container";
+      container.style = "display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 10px;";
+
+      const createButton = (href, text) => {
+        const link = document.createElement("a");
+        link.href = href;
+        link.target = "_blank";
+        link.style = "padding: 10px 20px; background-color: #56a845; color: #fff; text-decoration: none; border-radius: 5px; font-size: 20px; cursor: pointer;";
+        link.textContent = text;
+        return link;
+      };
+
+      container.appendChild(createButton(`https://registro.br/tecnologia/ferramentas/whois?search=${encodeURIComponent(domain)}`, "Consultar proprietário no Whois"));
+      container.appendChild(createButton(`https://${encodeURIComponent(domain)}`, "Abrir website"));
+      afterElement.parentNode.insertBefore(container, afterElement.nextSibling);
     };
 
     observeElement("p.is-avail-response-not-available", (element, domainName) => {
+      const infoTextElement = document.querySelector("div.info.font-4 > p");
+      const infoText = infoTextElement ? infoTextElement.innerText.trim() : null;
+
+      if (infoText !== "Domínio já registrado") {
+        return;
+      }
+
       addWhoisButton(element, domainName);
     });
 
